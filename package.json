@@ -4,7 +4,8 @@
   "description": "Projeto para disciplina de Banco da Dados II. Sistema Web para geração e administração de websites",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "keywords": [
     "node.js",
