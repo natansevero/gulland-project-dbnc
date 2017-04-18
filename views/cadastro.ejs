@@ -19,9 +19,17 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-5 linha-horizontal">
-            <h3>- Faça login -</h3>
-            <form name="login" action="" method="post">
+          <div class="col-md-offset-1 col-md-10">
+            <h3 class="text-center">- Cadastre-se -</h3>
+            <form name="cadastro" action="" method="post">
+              <div class="form-group">
+                <label for="email">Primeiro Nome:</label>
+                <input type="email" name="primeiro_nome" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="email">Segundo Nome:</label>
+                <input type="email" name="segundo_nome" class="form-control">
+              </div>
               <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" name="email" class="form-control">
@@ -30,14 +38,8 @@
                 <label for="senha">Senha:</label>
                 <input type="password" name="senha" class="form-control">
               </div>
-              <button type="submit" class="btn btn-default">Entrar</button>
+              <button type="submit" class="btn btn-defaul">Cadastrar-se</button>
             </form>
-          </div>
-          <div class="col-md-7">
-            <h3>- Cadastre-se -</h3>
-            <p>Crie e gerencie seu site. Opções de criações: Blog e Site Portifólio</p>
-            <!-- <button type="button" class="btn btn-default" name="button">Cadastrar-se</button> -->
-            <a href="/cadastro" class="btn btn-default">Cadastrar-se</a>
           </div>
         </div> <!-- row -->
       </div> <!-- container -->
