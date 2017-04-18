@@ -5,7 +5,7 @@ const app = express();
 
 consign()
   .include('libs/middlewares.js')
-  //.then('libs/conn_factory.js')
+  .then('libs/connFactory.js')
   .then('models')
   .then('controllers')
   .then('routes')
