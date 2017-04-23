@@ -5,3 +5,8 @@
 .linha-horizontal {
   border-right: 2px solid;
 }
+
+/* portifolio.ejs */
+.lista_section {
+  padding-bottom: 70px;
+}

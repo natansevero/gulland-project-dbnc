@@ -24,7 +24,7 @@ module.exports = (app) => {
       conn
         .then(client => {
           client.query(`
-            select id, email, senha from usuario where email = ${login.email} and senha = ${login.senha}
+            select * from usuario where email = '${login.email}' and senha = '${login.senha}'
           `, callback);
         });
     }

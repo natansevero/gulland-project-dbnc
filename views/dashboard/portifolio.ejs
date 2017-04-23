@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/dashboard?tipo=portifolio">Dashboard de Portifólio</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class=""></span>Visualizar Site</a></li>
+      <li><a href="#"><span class=""></span>Adicionar no Portifólio</a></li>
+      <li><a href="/sair"><span class=""></span>Sair</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Lista do Portifólio</h1>
+  </div>
+
+  <!-- loop -->
+  <div class="row">
+    <section class="jumbotron lista_section">
+      <h2>titulo de section portifólio</h2>
+      <p>Descrição</p>
+
+      <div class="">
+        <a href="#" class="col-md-offset-1 col-md-4 btn btn-warning">Atualizar</a>
+        <a href="#" class="col-md-offset-2 col-md-4 btn btn-danger">Deletar</a>
+      </div>
+    </section>
+  </div>
+  <!-- end loop -->
+
+</div>
+
+<% include ../partials/footer %>

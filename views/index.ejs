@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Login</title>
-    <!-- Estilo para resetar as config. dos navegadores -->
-    <link href="css/reset.css" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-		<!-- CSS -->
-		<link href="css/style.css" rel="stylesheet">
-  </head>
-  <body>
+<% include partials/header %>
     <section class="jumbotron">
       <div class="container">
         <div class="row">
@@ -20,8 +8,16 @@
         </div>
         <div class="row">
           <div class="col-md-5 linha-horizontal">
+
+            <% if(validacao) { %>
+              <div class="alert alert-danger">
+                <strong>Atenção!</strong>
+                <p><%= validacao %></p>
+              </div>
+            <% } %>
+
             <h3>- Faça login -</h3>
-            <form name="login" action="" method="post">
+            <form name="login" action="/login" method="post">
               <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" name="email" class="form-control">
@@ -42,9 +38,4 @@
         </div> <!-- row -->
       </div> <!-- container -->
     </section>
-  </body>
-  <!-- JQuery -->
-  <script src="lib/jquery.min.js" charset="utf-8"></script>
-  <!-- Bootstrap JS -->
-  <script src="lib/bootstrap/bootstrap.min.js" charset="utf-8"></script>
-</html>
+<% include partials/footer %>
