@@ -6,8 +6,8 @@
       <a class="navbar-brand" href="/dashboard?tipo=portifolio">Dashboard de Portifólio</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class=""></span>Visualizar Site</a></li>
-      <li><a href="#"><span class=""></span>Adicionar no Portifólio</a></li>
+      <li><a href="/site_portifolio"><span class=""></span>Visualizar Site</a></li>
+      <li><a href="/add_portifolio"><span class=""></span>Adicionar no Portifólio</a></li>
       <li><a href="/sair"><span class=""></span>Sair</a></li>
     </ul>
   </div>
@@ -19,17 +19,34 @@
   </div>
 
   <!-- loop -->
-  <div class="row">
-    <section class="jumbotron lista_section">
-      <h2>titulo de section portifólio</h2>
-      <p>Descrição</p>
 
-      <div class="">
-        <a href="#" class="col-md-offset-1 col-md-4 btn btn-warning">Atualizar</a>
-        <a href="#" class="col-md-offset-2 col-md-4 btn btn-danger">Deletar</a>
+  <% if(secao.length > 0) { %>
+    <% secao.forEach(element => { %>
+
+      <div class="row">
+        <section class="jumbotron lista_section">
+          <h2><%= element.titulo %></h2>
+          <p><%= element.descricao %></p>
+
+          <div class="">
+            <a href="/update_portifolio?id_secao=<%=element._id%>&titulo=<%=element.titulo%>&descricao=<%= element.descricao %>" class="col-md-offset-1 col-md-4 btn btn-warning">Atualizar</a>
+            <a href="/delete_port/<%=element._id%>" class="col-md-offset-2 col-md-4 btn btn-danger">Deletar</a>
+          </div>
+        </section>
       </div>
-    </section>
-  </div>
+
+    <% }) %>
+  <% } else { %>
+    <div class="row">
+      <section class="text-center">
+        <div class="alert alert-warning">
+          <strong>Seu portifólio está vazio, adicione conteúdo!</strong>
+        </div>
+      </section>
+    </div>
+  <% } %>
+
+
   <!-- end loop -->
 
 </div>
