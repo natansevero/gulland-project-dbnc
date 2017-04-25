@@ -15,7 +15,7 @@ module.exports = app => {
             })
           } else {
             let posts = result[0].posts;
-            return res.render('dashboard/posts', { posts: posts.reverse() })
+            return res.render('dashboard/blog', { posts: posts.reverse() })
           }
         });
       } else if(req.query.tipo == 'portifolio') {
@@ -36,32 +36,78 @@ module.exports = app => {
     },
 
     BlogDash: {
+      // Action generete website
       render_site: (req, res) => {
+        let id_usuario = req.session.usuario.id;
 
+        BlogModel.find({ id_usuario: id_usuario }, (err, result) => {
+          if(err) return res.redirect('/dashboard?tipo=blog');
+          else {
+            let dados = {
+              posts: result[0].posts.reverse(),
+              nome: `${req.session.usuario.primeiro_nome} ${req.session.usuario.segundo_nome}`,
+              dominio: req.session.usuario.dominio,
+              data: result[0].posts.data
+            }
+            return res.render('site/site_blog', { dados: dados });
+          }
+        });
       },
 
       view_create: (req, res) => {
-
+        res.render('dashboard/add_blog', { validacao: null });
       },
 
       update_view: (req, res) => {
-
+        let dados_post = req.query;
+        res.render('dashboard/update_blog', { validacao: null, dados_post: dados_post });
       },
 
       create: (req, res) => {
+        let post = req.body;
+        let _id = req.session.usuario.id;
 
+        BlogModel.update({ id_usuario: _id }, { $push: { posts: post } }, (err, result) => {
+          if(err) return res.render('dashboard/add_blog', { validacao: "Algo de errado aconteceu!" });
+          else return res.redirect('/dashboard?tipo=blog');
+        });
       },
 
       update: (req, res) => {
+        let id_usuario = req.session.usuario.id;
 
+        BlogModel.findOne({ id_usuario: id_usuario }, (err, user) => {
+          if(err) return res.redirect('/dashboard?tipo=blog');
+          user.posts.forEach((p, index) => {
+            if(p._id == req.body._id) {
+              user.posts[index].titulo = req.body.titulo;
+              user.posts[index].conteudo = req.body.conteudo;
+            }
+          });
+
+          user.save((err, result) => {
+            if(err) {
+              console.log("erro:", err);
+              return res.redirect('/dashboard?tipo=blog');
+            }
+            else return res.redirect('/dashboard?tipo=blog');
+          })
+        })
       },
 
       delete: (req, res) => {
-        
+        let id_usuario = req.session.usuario.id;
+        let id_post = req.params.id_post;
+
+        BlogModel.update({ id_usuario: id_usuario }, { $pull: { posts: { _id: id_post } } }, (err, result) => {
+          if(err) return res.redirect('/dashboard?tipo=blog');
+          else return res.redirect('/dashboard?tipo=blog');
+        })
       }
     },
 
     PortifolioDash: {
+      // Action generete website
       render_site: (req, res) => {
         let id_usuario = req.session.usuario.id;
 

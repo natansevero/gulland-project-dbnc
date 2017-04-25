@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .bg-1 {
+        background-color: #000000; /* Green */
+        color: #ffffff !important;
+    }
+
+    .bg-2 {
+        background-color: #937d0d; /* Green */
+        color: #ffffff !important;
+    }
+
+    .bg-3 {
+        background-color: #1f1e40; /* Green */
+        color: #ffffff !important;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .navbar {
+        padding-top: 60px;
+        padding-bottom: 60px;
+        border: 0;
+        border-radius: 0;
+        margin-bottom: 0;
+        font-size: 12px;
+        letter-spacing: 5px;
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    /*.row.content {height: 1500px}*/
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-default bg-1 text-center">
+    <div class="container">
+      <div class="navbar-header">
+        <% if(dados.dominio) { %>
+          <a class="navbar-brand" style="font-size: 50px" href="/site_blog"><%= dados.dominio %></a>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <% if(dados.posts.length > 0) { %>
+      <% dados.posts.forEach(el => { %>
+        <div class="col-sm-12 bg-2">
+          <h2 style="text-decoration: underline"><%=el.titulo%></h2>
+          <h5><span class="glyphicon glyphicon-time"></span><%=el.data%></h5>
+          <p style="padding-top: 10px; text-align: justify"><%=el.conteudo%></p>
+          <hr>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+</div>
+
+<footer class="container-fluid bg-3 text-center">
+  <% if(dados.nome) { %>
+    <p><b>Blog desenvolvido por <%= dados.nome %></b></p>
+  <% } %>
+  <p>Todos os direitos reservados a Gulland Project</p>
+</footer>
+
+</body>
+</html>

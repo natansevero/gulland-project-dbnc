@@ -82,14 +82,14 @@
 </div> -->
 
 <!-- Third Container (Grid) -->
-<div class="container-fluid bg-1 text-center">
-  <h3 class="margin"><h1>Meu portifólio!</h1></h3><br>
+<div class="container-fluid text-center bg-1">
+  <h1 class="margin">Meu portifólio!</h1><br>
   <div class="row">
     <% if(dados.secao.length > 0) { %>
       <% dados.secao.forEach(el => { %>
 
-        <div class="col-sm-offset-1 col-sm-10">
-          <h2><%= el.titulo %></h2>
+        <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 5%">
+          <h2 class="text-center" style="text-decoration: underline"><%= el.titulo %></h2>
           <p style="font-size: 20px"><%= el.descricao %></p>
         </div>
 

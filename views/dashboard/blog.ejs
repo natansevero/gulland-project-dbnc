@@ -1,5 +1,5 @@
 <% include ../partials/header %>
-<nav class="navbar navbar-reverse">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/dashboard?tipo=blog">Dashboard de <b>Blog</b></a>
@@ -14,7 +14,7 @@
 
 <div class="container">
   <div class="row">
-    <h1 class="text-center">Lista do Portifólio</h1>
+    <h1 class="text-center">Lista do Blog</h1>
   </div>
 
   <!-- loop -->
@@ -25,11 +25,11 @@
       <div class="row">
         <section class="jumbotron lista_section">
           <h2><%= element.titulo %></h2>
-          <p><%= element.descricao %></p>
+          <p><%= element.conteudo %></p>
 
           <div class="">
             <a href="/update_blog_render?id_post=<%=element._id%>&titulo=<%=element.titulo%>&conteudo=<%= element.conteudo %>" class="col-md-offset-1 col-md-4 btn btn-warning">Atualizar</a>
-            <a href="/delete_port/<%=element._id%>" class="col-md-offset-2 col-md-4 btn btn-danger">Deletar</a>
+            <a href="/delete_blog/<%=element._id%>" class="col-md-offset-2 col-md-4 btn btn-danger">Deletar</a>
           </div>
         </section>
       </div>
