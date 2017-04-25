@@ -3,16 +3,16 @@ const mongoose = require('mongoose');
 module.exports = app => {
   const Schema = mongoose.Schema;
 
-  const SecaoPortifolioSchema = new Schema({
+  const PostBlogSchema = new Schema({
     titulo: { type: String, required: true },
-    descricao: { type: String, required: true },
+    conteudo: { type: String, required: true },
     data: { type: Date, default: Date.now }
   });
 
-  const PortifolioSchema = new Schema({
+  const BlogSchema = new Schema({
     id_usuario: { type: Number, required: true },
-    secao: [ SecaoPortifolioSchema ]
+    posts: [ PostBlogSchema ]
   });
 
-  return mongoose.model('portifolios', PortifolioSchema);;
+  return mongoose.model('blogs', BlogSchema);
 }

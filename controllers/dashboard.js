@@ -1,10 +1,24 @@
 module.exports = app => {
   let PortifolioModel = app.models.portifolio;
+  let BlogModel = app.models.blog;
 
   let DashboardController = {
     verificaDash: (req, res) => {
-      if(req.query.tipo == 'blog') return res.render('dashboard/blog')
-      else if(req.query.tipo == 'portifolio') {
+      if(req.query.tipo == 'blog') {
+        let _id = req.session.usuario.id;
+        BlogModel.find({ id_usuario: _id }, (err, result) => {
+          if(err) return res.redirect('/');
+          else if(result.length <= 0) {
+            BlogModel.create({ id_usuario: _id }, (err, result) => {
+              if(err) return res.redirect('/');
+              else return res.render('dashboard/blog', { posts: [] })
+            })
+          } else {
+            let posts = result[0].posts;
+            return res.render('dashboard/posts', { posts: posts.reverse() })
+          }
+        });
+      } else if(req.query.tipo == 'portifolio') {
         let _id = req.session.usuario.id;
         PortifolioModel.find({ id_usuario: _id }, (err, result) => {
           if(err) return res.redirect('/');
@@ -17,18 +31,51 @@ module.exports = app => {
             let secao = result[0].secao;
             return res.render('dashboard/portifolio', { secao: secao.reverse() })
           }
-        })
-      }
-      else return res.redirect('/')
+        });
+      } else return res.redirect('/')
     },
 
     BlogDash: {
+      render_site: (req, res) => {
 
+      },
+
+      view_create: (req, res) => {
+
+      },
+
+      update_view: (req, res) => {
+
+      },
+
+      create: (req, res) => {
+
+      },
+
+      update: (req, res) => {
+
+      },
+
+      delete: (req, res) => {
+        
+      }
     },
 
     PortifolioDash: {
       render_site: (req, res) => {
-        res.render('site/site_portifolio');
+        let id_usuario = req.session.usuario.id;
+
+        PortifolioModel.find({ id_usuario: id_usuario }, (err, result) => {
+          if(err) return res.redirect('/dashboard?tipo=portifolio');
+          else {
+            let dados = {
+              secao: result[0].secao.reverse(),
+              nome: `${req.session.usuario.primeiro_nome} ${req.session.usuario.segundo_nome}`,
+              dominio: req.session.usuario.dominio
+            }
+            return res.render('site/site_portifolio', { dados: dados });
+          }
+        });
       },
 
       view_create: (req, res) => {

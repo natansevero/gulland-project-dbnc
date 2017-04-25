@@ -1,3 +1,52 @@
 <% include ../partials/header %>
-<h1>Blog</h1>
+<nav class="navbar navbar-reverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/dashboard?tipo=blog">Dashboard de <b>Blog</b></a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/site_blog"><span class=""></span>Visualizar Site</a></li>
+      <li><a href="/add_blog"><span class=""></span>Adicionar no <b>Blog</b></a></li>
+      <li><a href="/sair"><span class=""></span>Sair</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">Lista do Portifólio</h1>
+  </div>
+
+  <!-- loop -->
+
+  <% if(posts.length > 0) { %>
+    <% posts.forEach(element => { %>
+
+      <div class="row">
+        <section class="jumbotron lista_section">
+          <h2><%= element.titulo %></h2>
+          <p><%= element.descricao %></p>
+
+          <div class="">
+            <a href="/update_blog_render?id_post=<%=element._id%>&titulo=<%=element.titulo%>&conteudo=<%= element.conteudo %>" class="col-md-offset-1 col-md-4 btn btn-warning">Atualizar</a>
+            <a href="/delete_port/<%=element._id%>" class="col-md-offset-2 col-md-4 btn btn-danger">Deletar</a>
+          </div>
+        </section>
+      </div>
+
+    <% }) %>
+  <% } else { %>
+    <div class="row">
+      <section class="text-center">
+        <div class="alert alert-warning">
+          <strong>Seu portifólio está vazio, adicione conteúdo!</strong>
+        </div>
+      </section>
+    </div>
+  <% } %>
+
+
+  <!-- end loop -->
+
+</div>
 <% include ../partials/footer %>

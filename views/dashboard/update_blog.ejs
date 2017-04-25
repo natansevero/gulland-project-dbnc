@@ -3,10 +3,10 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/dashboard?tipo=portifolio">Adicione conteudo em seu <b>portifólio</b></a>
+      <a class="navbar-brand" href="/dashboard?tipo=blog">Edite e atualize seu <b>blog</b></a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="/dashboard?tipo=portifolio"><span class=""></span>Voltar para dashboard</a></li>
+      <li><a href="/dashboard?tipo=blog"><span class=""></span>Voltar para dashboard</a></li>
       <li><a href="/sair"><span class=""></span>Sair</a></li>
     </ul>
   </div>
@@ -19,16 +19,20 @@
     </div>
   <% } %>
   <div class="col-md-12">
-    <form name="cadastro" action="/create_port" method="post">
+    <form name="update" action="/update_blog" method="post">
+      <div class="form-group">
+        <!-- <label for="id">id:</label> -->
+        <input type="hidden" name="_id" value="<%=dados_post.id_post%>" class="form-control">
+      </div>
       <div class="form-group">
         <label for="titulo">Titulo:</label>
-        <input type="text" name="titulo" class="form-control">
+        <input type="text" name="titulo" value="<%=dados_post.titulo%>" class="form-control">
       </div>
       <div class="form-group">
         <label for="descricao">Descrição:</label>
-        <textarea name="descricao" class="form-control" rows="8"></textarea>
+        <textarea name="descricao" class="form-control" rows="8"><%=dados_post.conteudo%></textarea>
       </div>
-      <button type="submit" class="btn btn-success">Criar</button>
+      <button type="submit" class="btn btn-warning">Atualizar</button>
     </form>
   </div>
 </div> <!-- end container -->
