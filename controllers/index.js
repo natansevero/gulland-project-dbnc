@@ -2,6 +2,7 @@ const crypto = require('crypto');
 
 module.exports = (app) => {
   let UsuarioModel = app.models.usuario;
+  let redis = app.libs.connFactory(3);
 
   let IndexController = {
     index: (req, res) => {
@@ -37,6 +38,8 @@ module.exports = (app) => {
         else {
           if(result.rows.length > 0) {
             req.session.usuario = result.rows[0];
+
+            redis.setex(result.rows[0].email, 10 * 60, result.rows[0]);  
 
             if(result.rows[0].tipo_template == 'blog') return res.redirect('/dashboard?tipo=blog')
             else return res.redirect('/dashboard?tipo=portifolio');

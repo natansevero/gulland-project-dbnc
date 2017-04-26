@@ -1,6 +1,7 @@
 module.exports = app => {
   let PortifolioModel = app.models.portifolio;
   let BlogModel = app.models.blog;
+  let redis = app.libs.connFactory(3);
 
   let DashboardController = {
     verificaDash: (req, res) => {
@@ -55,6 +56,7 @@ module.exports = app => {
       },
 
       view_create: (req, res) => {
+        redis.setex("Natan", 40, "opa");
         res.render('dashboard/add_blog', { validacao: null });
       },
 
