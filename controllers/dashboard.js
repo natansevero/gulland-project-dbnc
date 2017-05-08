@@ -44,7 +44,7 @@ module.exports = app => {
         BlogModel.find({ id_usuario: id_usuario }, (err, result) => {
           if(err) return res.redirect('/dashboard?tipo=blog');
           else {
-            let dados = {
+              let dados = {
               posts: result[0].posts.reverse(),
               nome: `${req.session.usuario.primeiro_nome} ${req.session.usuario.segundo_nome}`,
               dominio: req.session.usuario.dominio,

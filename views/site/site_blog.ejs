@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Blog</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,7 +14,7 @@
     }
 
     .bg-2 {
-        background-color: #937d0d; /* Green */
+        background-color: #509e80; /* Green */
         color: #ffffff !important;
     }
 
@@ -78,9 +78,12 @@
     <% if(dados.posts.length > 0) { %>
       <% dados.posts.forEach(el => { %>
         <div class="col-sm-12 bg-2">
-          <h2 style="text-decoration: underline"><%=el.titulo%></h2>
-          <h5><span class="glyphicon glyphicon-time"></span><%=el.data%></h5>
-          <p style="padding-top: 10px; text-align: justify"><%=el.conteudo%></p>
+          <h2 style="font-size: 40px"><%=el.titulo%></h2>
+          <h5><span class="glyphicon glyphicon-time"></span>
+            <!-- Data do post -->
+            <%=el.data.getDate()%>/<%=el.data.getMonth() + 1%>/<%=el.data.getFullYear()%>
+          </h5>
+          <p style="padding-top: 10px; text-align: justify; font-size: 20px"><%=el.conteudo%></p>
           <hr>
         </div>
       <% }) %>

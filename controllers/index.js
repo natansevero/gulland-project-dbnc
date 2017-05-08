@@ -39,7 +39,7 @@ module.exports = (app) => {
           if(result.rows.length > 0) {
             req.session.usuario = result.rows[0];
 
-            redis.setex(result.rows[0].email, 10 * 60, result.rows[0]);  
+            redis.set(result.rows[0].email, result.rows[0]);
 
             if(result.rows[0].tipo_template == 'blog') return res.redirect('/dashboard?tipo=blog')
             else return res.redirect('/dashboard?tipo=portifolio');
@@ -49,6 +49,7 @@ module.exports = (app) => {
     },
 
     sair: (req, res) => {
+      redis.del(req.session.usuario.email);
       req.session.destroy();
       res.redirect('/');
     }
